@@ -35,8 +35,8 @@
 
 - (IBAction)btn2Clicked:(UIButton *)sender {
     
-    NSArray *titles = @[@"QQ好友", @"短信", @"朋友圈", @"QQ好友", @"短信", @"微信好友", @"QQ空间", @"QQ好友", @"短信", @"QQ好友"];
-    NSArray *images = @[@"GreenBtn", @"heartbeat", @"game_center", @"heartbeat", @"GreenBtn", @"GreenBtn", @"heartbeat", @"GreenBtn", @"GreenBtn", @"heartbeat"];
+    NSArray *titles = @[@"QQ好友", @"短信", @"朋友圈", @"QQ好友", @"短信", @"微信好友", @"QQ空间", @"QQ好友", @"短信", @"QQ好友", @"QQ好友", @"短信", @"朋友圈", @"QQ好友", @"短信", @"微信好友", @"QQ空间", @"QQ好友", @"短信", @"QQ好友"];
+    NSArray *images = @[@"GreenBtn", @"heartbeat", @"game_center", @"heartbeat", @"GreenBtn", @"GreenBtn", @"heartbeat", @"GreenBtn", @"GreenBtn", @"heartbeat", @"GreenBtn", @"heartbeat", @"game_center", @"heartbeat", @"GreenBtn", @"GreenBtn", @"heartbeat", @"GreenBtn", @"GreenBtn", @"heartbeat"];
     HYCollectionPicker *collectionPicker = [HYCollectionPicker pickerWithTitles:titles images:images clicked:^(NSInteger itemIndex) {
         if (itemIndex == 0) {
             UIViewController *vc = [[UIViewController alloc] init];
@@ -44,6 +44,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     }];
+    collectionPicker.column = 3;
     [collectionPicker show];
 }
 

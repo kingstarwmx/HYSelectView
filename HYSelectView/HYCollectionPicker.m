@@ -13,10 +13,10 @@
 #define CollectionHeight 100
 #define PC_DEFAULT_BACKGROUND_OPACITY 0.3f
 #define PC_DEFAULT_ANIMATION_DURATION 0.3f
-#define MAXCOLUMN 4 //默认的列数
 
 
-@interface HYCollectionPicker ()<UICollectionViewDataSource, UICollectionViewDelegate>
+
+@interface HYCollectionPicker ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIWindow *backWindow;
@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSArray *imageNames;
 @property (nonatomic, copy) HYCollectionPickerBlock pickerBlock;
 @property (nonatomic, strong) UIPageControl *pageControl;
+@property (nonatomic, strong) UIScrollView *scrollView;
 /** 所有按钮的底部view */
 @property (nonatomic, strong) UIView *bottomView;
 
@@ -82,30 +83,38 @@
     }else{
         maxRow = 2;
     }
-    CGFloat cellWidth = screenSize.width / MAXCOLUMN;
+    CGFloat cellWidth = screenSize.width / self.column;
     CGFloat cellHeight = cellWidth / self.cellRatio;
     
-    //初始化collectionViewLayOut
-    HYCollectionLayout *layOut = [[HYCollectionLayout alloc] init];
-    layOut.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    layOut.itemSize = CGSizeMake(cellWidth, cellHeight);
-    layOut.minimumInteritemSpacing = 0;
-    layOut.minimumLineSpacing = 0;
-    layOut.customSize = CGSizeMake(screenSize.width * pageCount,  cellHeight * maxRow);
+    //初始化scrollView
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    scrollView.frame = CGRectMake(0, 0, screenSize.width, cellHeight * maxRow);
+    scrollView.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.bounces = NO;
+    scrollView.pagingEnabled = YES;
+    scrollView.delegate = self;
+    scrollView.contentSize = CGSizeMake(screenSize.width * pageCount,  cellHeight * maxRow);
+    self.scrollView = scrollView;
     
-    //初始化collectionView
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, cellHeight * maxRow) collectionViewLayout:layOut];
+    for (int i = 0; i < self.titles.count; i ++) {
+        HYCollectionButton *btn = [[HYCollectionButton alloc] init];
+        btn.tag = i;
+        [btn setTitle:self.titles[i] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:self.imageNames[i]] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        btn.isShowGrid = YES;
+        CGFloat btnX = screenSize.width * (i / self.column * 2) + cellWidth * (i % self.column);
+        CGFloat btnY = cellHeight * ((i % self.column * 2) / self.column);
+        CGFloat btnW = cellWidth;
+        CGFloat btnH = cellHeight;
+        
+        btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
+        [scrollView addSubview:btn];
+    }
     
-    collectionView.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
-    collectionView.showsHorizontalScrollIndicator = NO;
-    collectionView.showsVerticalScrollIndicator = NO;
-    collectionView.bounces = NO;
-    collectionView.pagingEnabled = YES;
-    collectionView.delegate = self;
-    collectionView.dataSource = self;
-    [collectionView registerClass:[HYPickerCollectionViewCell class] forCellWithReuseIdentifier:@"HYCollectionCell"];
-//    [self addSubview:collectionView];
-    self.collectionView = collectionView;
+    
     
     //初始化pagecontrol
     CGFloat pageControlH = 0;
@@ -113,19 +122,18 @@
         pageControlH = 20;
         UIPageControl *pageControl = [[UIPageControl alloc] init];
         self.pageControl = pageControl;
-//        [self addSubview:pageControl];
-        pageControl.frame = CGRectMake(0, CGRectGetMaxY(collectionView.frame), screenSize.width, pageControlH);
+        pageControl.frame = CGRectMake(0, CGRectGetMaxY(scrollView.frame), screenSize.width, pageControlH);
         pageControl.numberOfPages = pageCount;
-        pageControl.pageIndicatorTintColor = [UIColor grayColor];
+        pageControl.pageIndicatorTintColor = [UIColor colorWithWhite:0.9 alpha:1];
         pageControl.currentPageIndicatorTintColor = [UIColor colorWithWhite:0.4 alpha:1];
     }
     
     //初始化bottomView
     UIView *bottomView = [[UIView alloc] init];
-    CGFloat bottomViewH = collectionView.bounds.size.height + pageControlH;
+    CGFloat bottomViewH = scrollView.bounds.size.height + pageControlH;
     bottomView.frame = CGRectMake(0, screenSize.height - bottomViewH, screenSize.width, bottomViewH);
     bottomView.backgroundColor = self.collectionBGColor;
-    [bottomView addSubview:collectionView];
+    [bottomView addSubview:scrollView];
     [bottomView addSubview:self.pageControl];
     self.bottomView = bottomView;
     
@@ -133,11 +141,6 @@
     bottomView.transform = VerticalTransform;
 }
 
-#pragma mark --- UICollectionViewDataSource ---
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.titles.count;
-
-}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -150,13 +153,26 @@
     return cell;
 }
 
-#pragma mark --- UICollectionViewDelegate ---
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+#pragma mark --- UIScrollViewDelegate ---
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
+    CGFloat currentPageIndex = (scrollView.contentOffset.x + screenW / 2 ) / screenW;
+    self.pageControl.currentPage = currentPageIndex;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+
+}
+
+
+- (void)btnClicked:(UIButton *)sender{
     [self dismiss:nil];
     if (self.pickerBlock) {
-        self.pickerBlock(indexPath.row);
+        self.pickerBlock(sender.tag);
     }
 }
+
 - (void)show{
     [self setUpViews];
     
@@ -240,6 +256,13 @@
         _isShowGrid = NO;
     }
     return _isShowGrid;
+}
+
+- (NSInteger)column{
+    if (!_column) {
+        _column = 4;
+    }
+    return _column;
 }
 
 @end

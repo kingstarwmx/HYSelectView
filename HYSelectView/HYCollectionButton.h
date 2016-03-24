@@ -10,8 +10,11 @@
 
 @interface HYCollectionButton : UIButton
 
-
 @property (nonatomic, assign) CGFloat titleMargin;
 @property (nonatomic, assign) CGFloat imageMargin;
+/**
+ *  是否显示网格，默认是NO，不显示
+ */
+@property (nonatomic, assign) BOOL isShowGrid;
 
 @end

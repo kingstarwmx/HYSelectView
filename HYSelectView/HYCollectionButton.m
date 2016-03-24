@@ -24,9 +24,25 @@
         self.titleLabel.font = [UIFont systemFontOfSize:10];
         [self setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [self setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-
+        [self showGrid:YES];
     }
     return self;
+}
+
+- (void)showGrid:(BOOL)isShowGrid{
+    if (isShowGrid) {
+        //设置cell的阴影
+        self.clipsToBounds = NO;
+        self.layer.contentsScale = [UIScreen mainScreen].scale;
+        self.layer.shadowOpacity = 0.1f;
+        self.layer.shadowRadius = 0.7f;
+        self.layer.shadowOffset = CGSizeMake(0,0);
+        self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
+        //设置缓存
+        self.layer.shouldRasterize = YES;
+        //设置抗锯齿边缘
+        self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    }
 }
 
 - (CGRect)imageRectForContentRect:(CGRect)contentRect{
@@ -54,6 +70,11 @@
         _titleMargin = 0.f;
     }
     return _titleMargin;
+}
+
+- (void)setIsShowGrid:(BOOL)isShowGrid{
+    _isShowGrid = isShowGrid;
+    [self showGrid:isShowGrid];
 }
 
 @end

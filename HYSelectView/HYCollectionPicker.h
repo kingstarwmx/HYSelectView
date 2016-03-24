@@ -31,6 +31,12 @@ typedef void(^HYCollectionPickerBlock)(NSInteger itemIndex);
  *  集合视图的宽高比,默认是1.3
  */
 @property (nonatomic, assign) CGFloat cellRatio;
+
+/**
+ *  每行的列数,默认是4
+ */
+@property (nonatomic, assign) NSInteger column;
+
 /**
  *  是否显示网格，默认是NO，不显示
  */
