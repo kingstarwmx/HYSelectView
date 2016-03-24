@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="E37-Bp-1VD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="E37-Bp-1VD">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -27,24 +27,48 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0U-Qq-Z4Q">
-                                <rect key="frame" x="0.0" y="166" width="600" height="181"/>
+                                <rect key="frame" x="0.0" y="166" width="600" height="84"/>
                                 <color key="backgroundColor" red="0.91399731448581334" green="1" blue="0.49879122299462397" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="HYCollectionPicker"/>
+                                <state key="normal" title="HYCollectionPicker + 多页"/>
                                 <connections>
                                     <action selector="btn2Clicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xy6-Yp-fjq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNc-TB-M6w">
+                                <rect key="frame" x="0.0" y="258" width="600" height="108"/>
+                                <color key="backgroundColor" red="0.89803921568627454" green="1" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="HYCollectionPicker + 一页两行"/>
+                                <connections>
+                                    <action selector="btn3Clicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uS9-M2-Cab"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7E-W7-PmU">
+                                <rect key="frame" x="0.0" y="386" width="600" height="102"/>
+                                <color key="backgroundColor" red="0.8784313725490196" green="1" blue="0.35294117647058826" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="HYCollectionPicker + 一行"/>
+                                <connections>
+                                    <action selector="btn4Clicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xpx-HM-cV5"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="h7E-W7-PmU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="09g-hR-SSX"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HHw-fP-YvN" secondAttribute="bottom" constant="434" id="0e4-Jq-03X"/>
                             <constraint firstItem="HHw-fP-YvN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="8yv-c4-BUN"/>
                             <constraint firstItem="S0U-Qq-Z4Q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Dea-s2-i4n"/>
+                            <constraint firstItem="h7E-W7-PmU" firstAttribute="top" secondItem="sNc-TB-M6w" secondAttribute="bottom" constant="20" id="EMx-6O-JcX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sNc-TB-M6w" secondAttribute="trailing" constant="-20" id="MB2-gC-B0a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="h7E-W7-PmU" secondAttribute="trailing" constant="-20" id="QPZ-ZR-oNe"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sNc-TB-M6w" secondAttribute="bottom" constant="234" id="SUX-gp-9yN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="S0U-Qq-Z4Q" secondAttribute="trailing" constant="-20" id="b1N-or-663"/>
                             <constraint firstItem="S0U-Qq-Z4Q" firstAttribute="top" secondItem="HHw-fP-YvN" secondAttribute="bottom" id="dhU-Jd-912"/>
+                            <constraint firstItem="sNc-TB-M6w" firstAttribute="top" secondItem="S0U-Qq-Z4Q" secondAttribute="bottom" constant="8" id="k68-LV-7v3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HHw-fP-YvN" secondAttribute="trailing" constant="-20" id="kmE-So-MO9"/>
+                            <constraint firstItem="sNc-TB-M6w" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="lqF-7W-JFP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="h7E-W7-PmU" secondAttribute="bottom" constant="112" id="mdg-8M-I2J"/>
                             <constraint firstItem="HHw-fP-YvN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="qVm-bm-P22"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="S0U-Qq-Z4Q" secondAttribute="bottom" constant="253" id="ryX-7P-cBA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="S0U-Qq-Z4Q" secondAttribute="bottom" constant="350" id="ryX-7P-cBA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9gJ-aH-ZeR"/>

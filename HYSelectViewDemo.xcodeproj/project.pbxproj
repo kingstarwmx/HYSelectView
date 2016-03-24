@@ -11,7 +11,6 @@
 		06DBD2091CA0E0A900B41B59 /* bgImage_HL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DBD2071CA0E0A800B41B59 /* bgImage_HL@2x.png */; };
 		06DBD20A1CA0E0A900B41B59 /* cellLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DBD2081CA0E0A900B41B59 /* cellLine@2x.png */; };
 		06DBD20D1CA0EF4100B41B59 /* HYCollectionPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DBD20C1CA0EF4100B41B59 /* HYCollectionPicker.m */; };
-		06DBD2101CA0F8E900B41B59 /* HYPickerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DBD20F1CA0F8E900B41B59 /* HYPickerCollectionViewCell.m */; };
 		06DBD2131CA1280D00B41B59 /* gobike80.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DBD2121CA1280D00B41B59 /* gobike80.png */; };
 		06DBD2151CA1281D00B41B59 /* game_center@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DBD2141CA1281D00B41B59 /* game_center@2x.png */; };
 		06DBD2171CA1282700B41B59 /* GreenBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DBD2161CA1282700B41B59 /* GreenBtn@2x.png */; };
@@ -19,7 +18,6 @@
 		06DBD21B1CA1283F00B41B59 /* heartbeat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DBD21A1CA1283F00B41B59 /* heartbeat@2x.png */; };
 		06DBD21D1CA1284900B41B59 /* icon_base@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DBD21C1CA1284900B41B59 /* icon_base@2x.png */; };
 		06E4B9EA1CA387B0000E221D /* HYCollectionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E4B9E91CA387B0000E221D /* HYCollectionButton.m */; };
-		06E4B9ED1CA3D15C000E221D /* HYCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E4B9EC1CA3D15C000E221D /* HYCollectionLayout.m */; };
 		06F297E71C9FD566001165B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F297E61C9FD566001165B9 /* main.m */; };
 		06F297EA1C9FD566001165B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F297E91C9FD566001165B9 /* AppDelegate.m */; };
 		06F297ED1C9FD566001165B9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F297EC1C9FD566001165B9 /* ViewController.m */; };
@@ -35,8 +33,6 @@
 		06DBD2081CA0E0A900B41B59 /* cellLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellLine@2x.png"; sourceTree = "<group>"; };
 		06DBD20B1CA0EF4100B41B59 /* HYCollectionPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCollectionPicker.h; sourceTree = "<group>"; };
 		06DBD20C1CA0EF4100B41B59 /* HYCollectionPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCollectionPicker.m; sourceTree = "<group>"; };
-		06DBD20E1CA0F8E900B41B59 /* HYPickerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPickerCollectionViewCell.h; sourceTree = "<group>"; };
-		06DBD20F1CA0F8E900B41B59 /* HYPickerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPickerCollectionViewCell.m; sourceTree = "<group>"; };
 		06DBD2121CA1280D00B41B59 /* gobike80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gobike80.png; sourceTree = "<group>"; };
 		06DBD2141CA1281D00B41B59 /* game_center@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_center@2x.png"; sourceTree = "<group>"; };
 		06DBD2161CA1282700B41B59 /* GreenBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GreenBtn@2x.png"; sourceTree = "<group>"; };
@@ -45,8 +41,6 @@
 		06DBD21C1CA1284900B41B59 /* icon_base@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_base@2x.png"; sourceTree = "<group>"; };
 		06E4B9E81CA387B0000E221D /* HYCollectionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCollectionButton.h; sourceTree = "<group>"; };
 		06E4B9E91CA387B0000E221D /* HYCollectionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCollectionButton.m; sourceTree = "<group>"; };
-		06E4B9EB1CA3D15C000E221D /* HYCollectionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCollectionLayout.h; sourceTree = "<group>"; };
-		06E4B9EC1CA3D15C000E221D /* HYCollectionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCollectionLayout.m; sourceTree = "<group>"; };
 		06F297E21C9FD566001165B9 /* HYSelectViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HYSelectViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F297E61C9FD566001165B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		06F297E81C9FD566001165B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -145,12 +139,8 @@
 				06F297FE1C9FDFCD001165B9 /* HYActionSheet.m */,
 				06DBD20B1CA0EF4100B41B59 /* HYCollectionPicker.h */,
 				06DBD20C1CA0EF4100B41B59 /* HYCollectionPicker.m */,
-				06E4B9EB1CA3D15C000E221D /* HYCollectionLayout.h */,
-				06E4B9EC1CA3D15C000E221D /* HYCollectionLayout.m */,
 				06E4B9E81CA387B0000E221D /* HYCollectionButton.h */,
 				06E4B9E91CA387B0000E221D /* HYCollectionButton.m */,
-				06DBD20E1CA0F8E900B41B59 /* HYPickerCollectionViewCell.h */,
-				06DBD20F1CA0F8E900B41B59 /* HYPickerCollectionViewCell.m */,
 			);
 			path = HYSelectView;
 			sourceTree = "<group>";
@@ -235,12 +225,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				06E4B9EA1CA387B0000E221D /* HYCollectionButton.m in Sources */,
-				06E4B9ED1CA3D15C000E221D /* HYCollectionLayout.m in Sources */,
 				06F297ED1C9FD566001165B9 /* ViewController.m in Sources */,
 				06F297EA1C9FD566001165B9 /* AppDelegate.m in Sources */,
 				06DBD20D1CA0EF4100B41B59 /* HYCollectionPicker.m in Sources */,
 				06271E691CA2961800902B92 /* README.md in Sources */,
-				06DBD2101CA0F8E900B41B59 /* HYPickerCollectionViewCell.m in Sources */,
 				06F297FF1C9FDFCD001165B9 /* HYActionSheet.m in Sources */,
 				06F297E71C9FD566001165B9 /* main.m in Sources */,
 			);

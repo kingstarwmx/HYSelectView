@@ -6,8 +6,8 @@
 //  Copyright © 2016年 huayun. All rights reserved.
 //
 
-
-#define HYBUTTONIMAGERATIO 0.7
+//图片高度跟label高度与图片的和之比
+#define HYBUTTONIMAGERATIO 0.618
 
 #import "HYCollectionButton.h"
 
@@ -17,13 +17,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        self.imageEdgeInsets = UIEdgeInsetsMake(-10, -10, -10, 10);
-//        self.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-        
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.font = [UIFont systemFontOfSize:10];
-        [self setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+//        self.titleLabel.font = [UIFont systemFontOfSize:10];
         [self showGrid:YES];
     }
     return self;
@@ -34,7 +29,7 @@
         //设置cell的阴影
         self.clipsToBounds = NO;
         self.layer.contentsScale = [UIScreen mainScreen].scale;
-        self.layer.shadowOpacity = 0.1f;
+        self.layer.shadowOpacity = 0.9f;
         self.layer.shadowRadius = 0.7f;
         self.layer.shadowOffset = CGSizeMake(0,0);
         self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
@@ -47,14 +42,14 @@
 
 - (CGRect)imageRectForContentRect:(CGRect)contentRect{
     CGFloat imageW = contentRect.size.width;
-    CGFloat imageH = contentRect.size.height * HYBUTTONIMAGERATIO - self.imageMargin;
+    CGFloat imageH = (contentRect.size.height - self.imageMargin - self.titleMargin) * HYBUTTONIMAGERATIO;
     return CGRectMake(0, self.imageMargin, imageW, imageH);
 }
 
 - (CGRect)titleRectForContentRect:(CGRect)contentRect{
-    CGFloat titleY = contentRect.size.height * HYBUTTONIMAGERATIO;
+    CGFloat titleY = (contentRect.size.height - self.imageMargin - self.titleMargin) * HYBUTTONIMAGERATIO + self.imageMargin;
     CGFloat titleW = contentRect.size.width;
-    CGFloat titleH = contentRect.size.height - titleY;
+    CGFloat titleH = (contentRect.size.height - self.imageMargin - self.titleMargin) * (1 - HYBUTTONIMAGERATIO);
     return CGRectMake(0, titleY, titleW, titleH);
 }
 
@@ -67,7 +62,7 @@
 
 - (CGFloat)titleMargin{
     if (!_titleMargin) {
-        _titleMargin = 0.f;
+        _titleMargin = 5.f;
     }
     return _titleMargin;
 }

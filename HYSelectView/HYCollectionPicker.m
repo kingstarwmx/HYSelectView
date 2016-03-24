@@ -7,14 +7,11 @@
 //
 
 #import "HYCollectionPicker.h"
-#import "HYPickerCollectionViewCell.h"
-#import "HYCollectionLayout.h"
+#import "HYCollectionButton.h"
 
 #define CollectionHeight 100
 #define PC_DEFAULT_BACKGROUND_OPACITY 0.3f
 #define PC_DEFAULT_ANIMATION_DURATION 0.3f
-
-
 
 @interface HYCollectionPicker ()<UIScrollViewDelegate>
 
@@ -26,9 +23,8 @@
 @property (nonatomic, copy) HYCollectionPickerBlock pickerBlock;
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) UIScrollView *scrollView;
-/** 所有按钮的底部view */
-@property (nonatomic, strong) UIView *bottomView;
-
+@property (nonatomic, strong) UIView *bottomView;//装底部视图跟按钮的容器视图
+@property (nonatomic, assign) NSInteger pageCount;
 
 @end
 
@@ -56,12 +52,23 @@
 
 - (void)setUpViews{
     
-    
+    //计算一些基本的数据
+    NSInteger pageCount = (self.titles.count + self.column * 2 - 1 ) / (self.column * 2);//取整
+    self.pageCount = pageCount;
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    NSInteger maxRow = 0;
+    if (self.titles.count <= self.column) {
+        maxRow = 1;
+    }else{
+        maxRow = 2;
+    }
+    CGFloat cellWidth = screenSize.width / self.column;
+    CGFloat cellHeight = cellWidth / self.cellRatio;
+    if (self.cellHeight) {
+        cellHeight = self.cellHeight;
+    }
     
-    //collectionView的页数
-    NSInteger pageCount = ((self.titles.count + 7 ) / 8);//取整
-    
+    //设置自身属性
     self.userInteractionEnabled = YES;
     self.frame = CGRectMake(0, 0, screenSize.width, screenSize.height);
     
@@ -72,19 +79,9 @@
     darkView.userInteractionEnabled = YES;
     [self addSubview:darkView];
     self.darkView = darkView;
-    
     //设置darkView点击事件
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss:)];
     [darkView addGestureRecognizer:tap];
-    
-    NSInteger maxRow = 0;
-    if (self.titles.count <= 4) {
-        maxRow = 1;
-    }else{
-        maxRow = 2;
-    }
-    CGFloat cellWidth = screenSize.width / self.column;
-    CGFloat cellHeight = cellWidth / self.cellRatio;
     
     //初始化scrollView
     UIScrollView *scrollView = [[UIScrollView alloc] init];
@@ -98,34 +95,38 @@
     scrollView.contentSize = CGSizeMake(screenSize.width * pageCount,  cellHeight * maxRow);
     self.scrollView = scrollView;
     
+    //设置scrollView里面的按钮
     for (int i = 0; i < self.titles.count; i ++) {
         HYCollectionButton *btn = [[HYCollectionButton alloc] init];
         btn.tag = i;
         [btn setTitle:self.titles[i] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:self.imageNames[i]] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [btn setTitleColor:self.titleColor forState:UIControlStateNormal];
+        [btn setTitleColor:self.titleColor forState:UIControlStateHighlighted];
+        [btn.titleLabel setFont:self.titleFont];
+        
         btn.isShowGrid = YES;
-        CGFloat btnX = screenSize.width * (i / self.column * 2) + cellWidth * (i % self.column);
-        CGFloat btnY = cellHeight * ((i % self.column * 2) / self.column);
+        CGFloat btnX = screenSize.width * (i / (self.column * 2)) + cellWidth * (i % self.column);
+        CGFloat btnY = cellHeight * ((i % (self.column * 2)) / self.column);
         CGFloat btnW = cellWidth;
         CGFloat btnH = cellHeight;
-        
         btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
+        NSLog(@"%d-----%@", i, NSStringFromCGRect(btn.frame));
         [scrollView addSubview:btn];
     }
-    
-    
     
     //初始化pagecontrol
     CGFloat pageControlH = 0;
     if (pageCount > 1) {
-        pageControlH = 20;
+        pageControlH = self.pageControlH;
         UIPageControl *pageControl = [[UIPageControl alloc] init];
         self.pageControl = pageControl;
         pageControl.frame = CGRectMake(0, CGRectGetMaxY(scrollView.frame), screenSize.width, pageControlH);
         pageControl.numberOfPages = pageCount;
         pageControl.pageIndicatorTintColor = [UIColor colorWithWhite:0.9 alpha:1];
         pageControl.currentPageIndicatorTintColor = [UIColor colorWithWhite:0.4 alpha:1];
+        pageControl.userInteractionEnabled = NO;
     }
     
     //初始化bottomView
@@ -141,17 +142,9 @@
     bottomView.transform = VerticalTransform;
 }
 
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *reuseID = @"HYCollectionCell";
-    HYPickerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID forIndexPath:indexPath];
-    cell.title = (NSString *)self.titles[indexPath.row];
-    cell.imageName = (NSString *)self.imageNames[indexPath.row];
-    cell.isShowGrid = self.isShowGrid;
-    cell.backgroundColor = self.collectionBGColor;
-    return cell;
-}
+//- (void)changePage:(UIPageControl *)sender{
+//    [self.collectionView setContentOffset:CGPointMake(sender.currentPage * [UIScreen mainScreen].bounds.size.width, 0)];
+//}
 
 #pragma mark --- UIScrollViewDelegate ---
 
@@ -251,18 +244,39 @@
     return _cellRatio;
 }
 
-- (BOOL)isShowGrid{
-    if (!_isShowGrid) {
-        _isShowGrid = NO;
-    }
-    return _isShowGrid;
-}
+//- (BOOL)isShowGrid{
+//    if (!_isShowGrid) {
+//        _isShowGrid = NO;
+//    }
+//    return _isShowGrid;
+//}
 
 - (NSInteger)column{
     if (!_column) {
         _column = 4;
     }
     return _column;
+}
+
+- (UIColor *)titleColor{
+    if (!_titleColor) {
+        _titleColor = [UIColor grayColor];
+    }
+    return _titleColor;
+}
+
+- (UIFont *)titleFont{
+    if (!_titleFont) {
+        _titleFont = [UIFont systemFontOfSize:11];
+    }
+    return _titleFont;
+}
+
+- (CGFloat)pageControlH{
+    if (!_pageControlH) {
+        _pageControlH = 25;
+    }
+    return _pageControlH;
 }
 
 @end

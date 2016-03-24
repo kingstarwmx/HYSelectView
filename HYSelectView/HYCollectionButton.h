@@ -10,6 +10,7 @@
 
 @interface HYCollectionButton : UIButton
 
+@property (nonatomic, strong) UIFont *titleFont;
 @property (nonatomic, assign) CGFloat titleMargin;
 @property (nonatomic, assign) CGFloat imageMargin;
 /**
