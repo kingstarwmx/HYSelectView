@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "HYActionSheet.h"
 #import "HYCollectionPicker.h"
+#import "HYAlertView.h"
 
 @interface ViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -73,6 +74,44 @@
     [collectionPicker show];
 }
 
+- (IBAction)btn5Clicked:(UIButton *)sender {
+    
+    HYAlertView *alert = [[HYAlertView alloc] initWithInputTitle:@"豆瓣" detail:@"确认退出登录？" placeholder:@"请输入密码" handler:^(NSString *text) {
+        NSLog(@"%@", text);
+    } redButtonIndex:-1 clicked:^(NSInteger itemIndex) {
+        
+    }];
+    [alert show];
+    
+    
+}
+- (IBAction)btn6Clicked:(id)sender {
+    HYAlertView *alert = [[HYAlertView alloc] initWithConfirmTitle:@"你认真的说?" detail:@"你要抓" redButtonIndex:-1 clicked:^(NSInteger itemIndex) {
+        
+    }];
+    [alert show];
+    
+    
+}
+
+- (IBAction)btn7Clicked:(id)sender {
+    
+    HYAlertView *alert = [[HYAlertView alloc]initWithTitle:@"这是一个标题" detail:@"也可以这样长长长长长长长长长长长长长长长长长长长长长长长长长长长长" items:@[@"BUTTON1", @"BUTTON2", @"BUTTON3", @"BUTTON4"] redButtonIndex:0 clicked:^(NSInteger itemIndex) {
+        
+    }];
+    [alert show];
+    
+}
+
+
+
+- (IBAction)btn8Clicked:(id)sender {
+    
+    HYAlertView *alert = [[HYAlertView alloc]initWithTitle:@"账号未绑定" detail:@"此账号未绑定手机，请联系管理员？" items:@[@"确认"] redButtonIndex:-1 clicked:^(NSInteger itemIndex) {
+        
+    }];
+    [alert show];
+}
 
 - (void)pickImage{
     UIImagePickerController *imagepicker = [[UIImagePickerController alloc] init];

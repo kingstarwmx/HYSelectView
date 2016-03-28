@@ -25,6 +25,7 @@
 		06F297F21C9FD566001165B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F297F11C9FD566001165B9 /* Assets.xcassets */; };
 		06F297F51C9FD566001165B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06F297F31C9FD566001165B9 /* LaunchScreen.storyboard */; };
 		06F297FF1C9FDFCD001165B9 /* HYActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F297FE1C9FDFCD001165B9 /* HYActionSheet.m */; };
+		B34966821CA967380012512E /* HYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B34966811CA967380012512E /* HYAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		06F297F61C9FD566001165B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06F297FD1C9FDFCD001165B9 /* HYActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYActionSheet.h; sourceTree = "<group>"; };
 		06F297FE1C9FDFCD001165B9 /* HYActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYActionSheet.m; sourceTree = "<group>"; };
+		B34966801CA967380012512E /* HYAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYAlertView.h; sourceTree = "<group>"; };
+		B34966811CA967380012512E /* HYAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 				06DBD20C1CA0EF4100B41B59 /* HYCollectionPicker.m */,
 				06E4B9E81CA387B0000E221D /* HYCollectionButton.h */,
 				06E4B9E91CA387B0000E221D /* HYCollectionButton.m */,
+				B34966801CA967380012512E /* HYAlertView.h */,
+				B34966811CA967380012512E /* HYAlertView.m */,
 			);
 			path = HYSelectView;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				06F297ED1C9FD566001165B9 /* ViewController.m in Sources */,
 				06F297EA1C9FD566001165B9 /* AppDelegate.m in Sources */,
 				06DBD20D1CA0EF4100B41B59 /* HYCollectionPicker.m in Sources */,
+				B34966821CA967380012512E /* HYAlertView.m in Sources */,
 				06271E691CA2961800902B92 /* README.md in Sources */,
 				06F297FF1C9FDFCD001165B9 /* HYActionSheet.m in Sources */,
 				06F297E71C9FD566001165B9 /* main.m in Sources */,
@@ -340,9 +346,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HYSelectViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = huayun.HYSelectViewDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = huayun.HYSelectViewDemoA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -351,9 +358,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HYSelectViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = huayun.HYSelectViewDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = huayun.HYSelectViewDemoA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
